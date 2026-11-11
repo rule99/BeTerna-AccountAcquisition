@@ -135,7 +135,8 @@ $apimAppId = az ad sp show --id $outputs.apimPrincipalId.value --query appId -o 
 Write-Host "Web app:      $appName  $($outputs.webAppUrl.value)" -ForegroundColor Green
 Write-Host "Accounts API: $($outputs.accountsApiUrl.value)/accounts" -ForegroundColor Green
 Write-Host "APIM managed identity Application ID: $apimAppId" -ForegroundColor Yellow
-Write-Host "  -> add it as a Dataverse application user with the read-only security role." -ForegroundColor Yellow
+Write-Host "  -> after importing the solution (it carries the role), create the Dataverse application user:" -ForegroundColor Yellow
+Write-Host "     pac admin assign-user --environment <dataverse-url> --user $apimAppId --role 'Account Acquisition API Reader' --application-user" -ForegroundColor Yellow
 
 # 5. Web app code.
 if ($WebProject) {
