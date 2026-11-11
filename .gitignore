@@ -1,0 +1,26 @@
+# Node / ESLint
+node_modules/
+
+# .NET plugin build output
+bin/
+obj/
+*.user
+
+# Local secrets (URLs/tokens for REST Client and tools)
+.env
+.env.*
+!.env.example
+
+# Azure Functions local settings (contain connection strings/secrets)
+local.settings.json
+
+# Power Platform CLI
+.pac/
+
+# Unpacked solution temp / packed solution output
+_temp/
+out/
+
+# OS
+Thumbs.db
+.DS_Store

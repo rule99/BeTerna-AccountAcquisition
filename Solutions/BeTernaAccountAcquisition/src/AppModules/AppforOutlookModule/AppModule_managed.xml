@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppModule>
+  <UniqueName>AppforOutlookModule</UniqueName>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <WebResourceId>ade93eef-1e5e-e611-80d6-00155ded156f</WebResourceId>
+  <OptimizedFor></OptimizedFor>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <FormFactor>1</FormFactor>
+  <ClientType>8</ClientType>
+  <NavigationType>0</NavigationType>
+  <AppModuleComponents />
+  <LocalizedNames>
+    <LocalizedName description="Dynamics 365 App for Outlook" languagecode="1033" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description description="Provides access to Dynamics 365 App for Outlook for enabled users. Available only as an Outlook app. Contact your admin for set up details." languagecode="1033" />
+  </Descriptions>
+</AppModule>

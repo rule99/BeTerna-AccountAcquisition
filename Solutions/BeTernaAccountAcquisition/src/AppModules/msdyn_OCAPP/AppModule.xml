@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppModule>
+  <UniqueName>msdyn_OCAPP</UniqueName>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <WebResourceId>5c5f7f66-ad5f-4606-9d74-d1535de2c1ea</WebResourceId>
+  <OptimizedFor></OptimizedFor>
+  <statecode>1</statecode>
+  <statuscode>2</statuscode>
+  <FormFactor>1</FormFactor>
+  <ClientType>4</ClientType>
+  <NavigationType>0</NavigationType>
+  <AppModuleComponents />
+  <EventHandlers>
+    <EventHandler eventname="onload" functionname="OmniChannelPackage.AdminAppDeprecationNotice.showDeprecationBanner" libraryname="msdyn_deprecationNotice.js" parameters="" enable="true" isblocking="true" />
+  </EventHandlers>
+  <LocalizedNames>
+    <LocalizedName description="Omnichannel Administration" languagecode="1033" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description description="A unified and consistent experience for your agents interacting across communication channels to deliver an enhanced customer service" languagecode="1033" />
+  </Descriptions>
+</AppModule>

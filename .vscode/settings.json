@@ -1,0 +1,38 @@
+{
+  // ---- Editor ----
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.tabSize": 2,
+  "files.eol": "\r\n",
+
+  // ---- ESLint ----
+  "eslint.validate": ["javascript", "typescript"],
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+
+  // ---- Files / associations ----
+  "files.associations": {
+    "*.xml": "xml",
+    "customizations.xml": "xml"
+  },
+  "files.exclude": {
+    "**/bin": true,
+    "**/obj": true,
+    "**/node_modules": true
+  },
+
+  // ---- XML Tools (ribbon / customizations formatting) ----
+  "xmlTools.enableXmlTreeViewCursorSync": true,
+  "[xml]": {
+    "editor.defaultFormatter": "DotJoshJohnson.xml"
+  },
+
+  // ---- JS / TS web resources ----
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

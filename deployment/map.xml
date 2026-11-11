@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  EXCEPTIONS ONLY. Pack-Solution.ps1 maps these automatically, no entry needed:
+    - web resources:  WebResources\<prefix>_\<TableSchemaName>\<File>  <-  WebResources\<TableSchemaName>\<File>
+    - plugin DLLs:    PluginAssemblies\...\<Name>.dll                   <-  newest Plugins\**\bin\Release\**\<Name>.dll
+  Add a directive here only for a file that doesn't follow that convention; it overrides the automatic one.
+
+  "map" = path inside the unpacked solution folder.
+  "to"  = source path RELATIVE TO THE UNPACKED SOLUTION FOLDER (not this file).
+          From Solutions\<Name>\ the repo root is ..\..   (clone layout Solutions\<Name>\src\: ..\..\..)
+  The combined result is written to out\map.generated.xml on every pack.
+-->
+<Mapping>
+  <!-- <FileToFile map="WebResources\lrw_\legacy\old_script.js" to="..\..\WebResources\Account\FormCustomization.js" /> -->
+</Mapping>

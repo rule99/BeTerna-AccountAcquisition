@@ -1,0 +1,19 @@
+{
+  "name": "dynamics365-dev",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dynamics 365 CE / Power Platform workspace — web resources, plugins, solutions.",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc -p jsconfig.json"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@types/xrm": "^9.0.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  }
+}

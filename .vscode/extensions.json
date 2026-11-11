@@ -1,0 +1,19 @@
+{
+  // Extensions VS Code will recommend to anyone who opens this workspace.
+  "recommendations": [
+    "microsoft-IsvExpTools.powerplatform-vscode",
+    "ms-dotnettools.csharp",
+    "ms-vscode.powershell",
+    "humao.rest-client",
+    "eamodio.gitlens",
+    "DotJoshJohnson.xml",
+    "dbaeumer.vscode-eslint",
+    "ms-vscode.vscode-typescript-next",
+    "PowerAppsTools.powerfx",
+    "esbenp.prettier-vscode",
+    "editorconfig.editorconfig",
+    "ms-vscode.vscode-node-azure-pack",
+    "ms-azuretools.vscode-bicep",
+    "ms-vscode.azurecli"
+  ]
+}

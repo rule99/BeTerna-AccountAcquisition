@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppModule>
+  <UniqueName>msdyn_TeamMember_Sales</UniqueName>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <WebResourceId>386f0fdc-fffe-4710-a3bb-4156a7c597d9</WebResourceId>
+  <OptimizedFor></OptimizedFor>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <FormFactor>1</FormFactor>
+  <ClientType>4</ClientType>
+  <NavigationType>0</NavigationType>
+  <AppModuleComponents />
+  <LocalizedNames>
+    <LocalizedName description="Sales Team Member" languagecode="1033" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description description="Team Member access to the Dynamics 365 Sales app module." languagecode="1033" />
+  </Descriptions>
+</AppModule>

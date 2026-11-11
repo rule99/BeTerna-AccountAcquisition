@@ -1,0 +1,54 @@
+### Dataverse Web API — starter requests (REST Client extension)
+### URL and token come from http/.env (git-ignored). Setup:
+###   1. az login                          (once)
+###   2. .\http\Get-DataverseToken.ps1     (creates .env from .env.example on first run;
+###                                         set DATAVERSE_URL there, re-run when you get 401)
+### Then click "Send Request" above any block.
+
+@baseUrl = {{$dotenv DATAVERSE_URL}}
+@apiVersion = v9.2
+@token = {{$dotenv DATAVERSE_TOKEN}}
+
+### WhoAmI — quick connectivity test
+GET {{baseUrl}}/api/data/{{apiVersion}}/WhoAmI
+Authorization: Bearer {{token}}
+Accept: application/json
+OData-MaxVersion: 4.0
+OData-Version: 4.0
+
+### Retrieve top 5 accounts (select a few columns)
+GET {{baseUrl}}/api/data/{{apiVersion}}/accounts?$select=name,telephone1,revenue&$top=5
+Authorization: Bearer {{token}}
+Accept: application/json
+OData-MaxVersion: 4.0
+OData-Version: 4.0
+
+### Retrieve accounts with a filter
+GET {{baseUrl}}/api/data/{{apiVersion}}/accounts?$select=name&$filter=revenue gt 100000&$orderby=name asc
+Authorization: Bearer {{token}}
+Accept: application/json
+OData-MaxVersion: 4.0
+OData-Version: 4.0
+
+### Create an account
+POST {{baseUrl}}/api/data/{{apiVersion}}/accounts
+Authorization: Bearer {{token}}
+Content-Type: application/json
+OData-MaxVersion: 4.0
+OData-Version: 4.0
+
+{
+  "name": "Contoso Test Account",
+  "telephone1": "555-0100"
+}
+
+### Update an account (replace GUID)
+PATCH {{baseUrl}}/api/data/{{apiVersion}}/accounts(00000000-0000-0000-0000-000000000000)
+Authorization: Bearer {{token}}
+Content-Type: application/json
+OData-MaxVersion: 4.0
+OData-Version: 4.0
+
+{
+  "telephone1": "555-0199"
+}

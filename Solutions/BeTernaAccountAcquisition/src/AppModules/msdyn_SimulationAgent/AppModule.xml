@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppModule>
+  <UniqueName>msdyn_SimulationAgent</UniqueName>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <WebResourceId>00000000-0000-0000-0000-000000000000</WebResourceId>
+  <OptimizedFor></OptimizedFor>
+  <statecode>1</statecode>
+  <statuscode>2</statuscode>
+  <FormFactor>1</FormFactor>
+  <ClientType>4</ClientType>
+  <NavigationType>0</NavigationType>
+  <AppModuleComponents />
+  <LocalizedNames>
+    <LocalizedName description="Agentic Simulations (preview)" languagecode="1033" />
+  </LocalizedNames>
+</AppModule>

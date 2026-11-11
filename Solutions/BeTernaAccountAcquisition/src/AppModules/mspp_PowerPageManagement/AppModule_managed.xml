@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppModule>
+  <UniqueName>mspp_PowerPageManagement</UniqueName>
+  <IntroducedVersion>1.0.0.9</IntroducedVersion>
+  <WebResourceId>f0450b70-6a9f-4376-81bc-7b6095e8a6d9</WebResourceId>
+  <OptimizedFor></OptimizedFor>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <FormFactor>1</FormFactor>
+  <ClientType>4</ClientType>
+  <NavigationType>0</NavigationType>
+  <AppModuleComponents />
+  <EventHandlers>
+    <EventHandler eventname="onload" functionname="" libraryname="mspp_scripts/jquery1.9.1.min.js" parameters="" enable="true" isblocking="true" />
+    <EventHandler eventname="onload" functionname="mspp.powerPagesManagementApp.init" libraryname="mspp_app/mspp_powerpagesmanagementapp.js" parameters="" enable="true" isblocking="true" />
+  </EventHandlers>
+  <LocalizedNames>
+    <LocalizedName description="Power Pages Management" languagecode="1033" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description description="Configure and manage your online platform to communicate and collaborate with customers." languagecode="1033" />
+  </Descriptions>
+</AppModule>
