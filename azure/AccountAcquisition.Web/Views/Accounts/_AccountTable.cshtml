@@ -1,0 +1,67 @@
+@model AccountTableViewModel
+@if (Model.List is null)
+{
+    <div class="alert alert-error" role="alert">
+        <p>@Model.ErrorMessage</p>
+        @if (!string.IsNullOrEmpty(Model.TraceId))
+        {
+            <p class="muted">Reference: <code>@Model.TraceId</code></p>
+        }
+    </div>
+}
+else
+{
+    var list = Model.List;
+    if (list.IsIncomplete)
+    {
+        <div class="alert alert-warning" role="alert">
+            Not everything fit in one response, so the list or some contact counts may be incomplete.
+        </div>
+    }
+
+    if (list.Accounts.Count == 0)
+    {
+        <p>There are no active accounts.</p>
+    }
+    else
+    {
+        <table class="accounts">
+            <caption class="visually-hidden">Active accounts with their number of contacts</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Account ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col" class="num">Contacts</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var account in list.Accounts)
+                {
+                    var (rowClass, statusText) = account.Status switch
+                    {
+                        AccountStatus.NoContacts => ("status-orange", "No contacts"),
+                        AccountStatus.ContactWithoutInformation => ("status-red",
+                            account.ContactsWithoutInformation == 1
+                                ? "1 contact without contact information"
+                                : $"{account.ContactsWithoutInformation} contacts without contact information"),
+                        _ => ((string?)null, string.Empty),
+                    };
+                    <tr class="@rowClass">
+                        <td>@(account.AccountNumber ?? "–")</td>
+                        <td>@account.Name</td>
+                        <td>@(account.Address ?? "–")</td>
+                        <td class="num">@account.ContactCount</td>
+                        <td>@statusText</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <p class="muted">
+        @list.Accounts.Count @(list.Accounts.Count == 1 ? "account" : "accounts") · loaded
+        <time datetime="@list.RetrievedAt.ToString("O")" data-local>@list.RetrievedAt.ToString("u")</time>
+    </p>
+}

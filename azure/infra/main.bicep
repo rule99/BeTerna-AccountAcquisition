@@ -223,8 +223,9 @@ resource webApp 'Microsoft.Web/sites@2024-04-01' = {
       ftpsState: 'Disabled'
       http20Enabled: true
       appSettings: [
+        // Telemetry is code-based (Microsoft.OpenTelemetry in the web app), so the App Service agent
+        // (ApplicationInsightsAgent_EXTENSION_VERSION) is deliberately not enabled: the two would conflict.
         { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING', value: appInsights.properties.ConnectionString }
-        { name: 'ApplicationInsightsAgent_EXTENSION_VERSION', value: '~2' }
         { name: 'AccountsApi__BaseUrl', value: '${apim.properties.gatewayUrl}/${apimApiPath}' }
         { name: 'AccountsApi__Scope', value: '${accountsApiAudience}/.default' }
       ]

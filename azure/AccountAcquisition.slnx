@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="AccountAcquisition.Web.Tests/AccountAcquisition.Web.Tests.csproj" />
+  <Project Path="AccountAcquisition.Web/AccountAcquisition.Web.csproj" />
+</Solution>

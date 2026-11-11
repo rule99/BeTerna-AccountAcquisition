@@ -43,6 +43,7 @@ Dynamics 365 CE / Power Platform project. Read this before changing anything.
   }
   ```
 - Apps under `apps/` keep their own constants module in their own source tree.
+- .NET projects under `azure/` (web apps, functions) keep a `Constants/` folder like the plugins: one class per table by schema name, plus `ConfigKeys.cs` for configuration keys read outside options classes and a class for API routes. Don't reuse a Dataverse constant for a non-Dataverse value (e.g. an APIM operation path).
 
 ## Web resources
 - Web resource name in Dataverse = `lrw_/` + path under `WebResources/`, exactly (e.g. `lrw_/Account/Ribbon.js`). Pack-Solution relies on this to find the source.
