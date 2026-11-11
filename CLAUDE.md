@@ -60,6 +60,7 @@ Dynamics 365 CE / Power Platform project. Read this before changing anything.
 - Refresh from dev with `deployment/scripts/Export-Solution.ps1 -SolutionName BeTernaAccountAcquisition`: exports unmanaged + managed via the active `pac auth` profile, unpacks with `--packagetype Both` (incl. deletions), then bumps the solution version in dev (`-NoVersionBump` to skip).
 - Selection happens at commit time: after an export, commit only the diffs that belong in the release (new tables, columns, views, steps…) and leave the rest uncommitted. Check that every committed component's dependencies are committed too.
 - Never commit connection strings or credential files; authenticate with `pac auth` profiles.
+- Commit messages: no `Co-Authored-By: Claude …` trailer (or any other AI co-author line).
 - Pack with `deployment/scripts/Pack-Solution.ps1 -SolutionName BeTernaAccountAcquisition` → `out/BeTernaAccountAcquisition.zip` + `out/BeTernaAccountAcquisition_managed.zip` (default `-PackageType Both`; Managed/Both refuse a folder not unpacked with `Both`). It swaps every web resource and plugin DLL in the solution for its repo source automatically (warns when a source is missing) — never hand-copy them into `Solutions/`. `deployment/map.xml` is for exceptions only; its `to` paths are relative to the unpacked solution folder.
 - Import modes:
   - **update** — components not in the package stay in the target; anything deleted in dev must be removed in the target separately.

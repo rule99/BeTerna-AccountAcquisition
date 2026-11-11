@@ -6,7 +6,7 @@
       <LocalizedName description="BeTerna-AccountAcquisition" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>1.0.0.0</Version>
+    <Version>1.0.0.2</Version>
     <Managed>2</Managed>
     <Publisher>
       <UniqueName>LukaRadulovicWorks</UniqueName>
@@ -80,6 +80,7 @@
     <RootComponents>
       <RootComponent type="1" schemaName="account" behavior="0" />
       <RootComponent type="1" schemaName="contact" behavior="0" />
+      <RootComponent type="20" id="{a8612e0c-f7dd-f111-84e8-e4fade0da3ee}" behavior="0" />
       <RootComponent type="60" id="{15915835-b87c-49ec-9ffc-bfac3ac44ef1}" />
       <RootComponent type="60" id="{70ad8b15-e3f3-4d7d-9e4b-16cb4e51b484}" />
       <RootComponent type="80" schemaName="AppforOutlookModule" behavior="0" />
