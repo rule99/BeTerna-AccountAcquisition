@@ -1,0 +1,47 @@
+<!--
+  GET /crm/accounts
+  1. Accept only an Entra token issued for the accounts API AND requested by the web app's managed identity.
+  2. Rewrite to one fixed Dataverse query: active accounts + their active contacts (contact columns from the
+     'contact-info-columns' named value). Incoming query parameters are dropped, so callers can't widen the query.
+  3. Call Dataverse with APIM's own managed identity (Dataverse application user with a read-only role).
+  The Dataverse URL comes from ONE named value ('dataverse-url') for both the destination and the token's
+  resource, so a token is never sent to a host it wasn't issued for.
+-->
+<policies>
+  <inbound>
+    <base />
+    <validate-azure-ad-token tenant-id="{{tenant-id}}" header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized">
+      <audiences>
+        <audience>{{accounts-api-audience}}</audience>
+        <audience>{{accounts-api-client-id}}</audience>
+      </audiences>
+      <required-claims>
+        <claim name="oid" match="any">
+          <value>{{webapp-principal-id}}</value>
+        </claim>
+      </required-claims>
+    </validate-azure-ad-token>
+    <set-backend-service base-url="{{dataverse-url}}/api/data/v9.2" />
+    <rewrite-uri template="/accounts?$select=accountid,accountnumber,name,address1_composite&amp;$filter=statecode%20eq%200&amp;$orderby=name&amp;$expand=contact_customer_accounts($select=contactid,{{contact-info-columns}};$filter=statecode%20eq%200)" copy-unmatched-params="false" />
+    <set-header name="Authorization" exists-action="delete" />
+    <authentication-managed-identity resource="{{dataverse-url}}" />
+    <set-header name="Accept" exists-action="override">
+      <value>application/json</value>
+    </set-header>
+    <set-header name="OData-MaxVersion" exists-action="override">
+      <value>4.0</value>
+    </set-header>
+    <set-header name="OData-Version" exists-action="override">
+      <value>4.0</value>
+    </set-header>
+  </inbound>
+  <backend>
+    <base />
+  </backend>
+  <outbound>
+    <base />
+  </outbound>
+  <on-error>
+    <base />
+  </on-error>
+</policies>

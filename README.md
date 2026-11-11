@@ -71,12 +71,22 @@ Preview an import locally: `.\deployment\scripts\Import-Solution.ps1 -ZipPath ou
 
 `azure/` holds Azure Functions / web apps and their infrastructure. It is **not** part of the Dataverse pipeline; deploy it manually (or from a separate pipeline), into the client's subscription, **before** importing a solution that depends on it.
 
-1. Function project: `func init azure\<Name>.Functions --worker-runtime dotnet-isolated --target-framework net8.0`, then `cd azure\<Name>.Functions; func new --template "HTTP trigger" --name Ping`; run locally with `func start`.
-2. Fill in `azure/infra/main.test.bicepparam` / `main.prod.bicepparam` (`dataverseUrl`). The example `main.bicep` creates a Flex Consumption Function App with identity-based storage and Application Insights; extend it for other resources.
-3. `az login`, then preview: `.\azure\scripts\Deploy-Azure.ps1 -Environment test -ResourceGroup <rg> -Subscription <id> -WhatIf`
-4. Deploy infra + code: `.\azure\scripts\Deploy-Azure.ps1 -Environment test -ResourceGroup <rg> -FunctionProject azure\<Name>.Functions`
-   (needs Contributor + role-assignment rights — Owner or User Access Administrator — on the resource group).
-5. Wire it to Dataverse: function URL into the solution's environment variable (`deploymentSettings.<env>.json`); the managed identity's Application ID as an application user with the right security role.
+This project's `main.bicep` deploys the account list web app:
+
+```
+browser --Entra sign-in (Easy Auth)--> App Service (Windows, ASP.NET Core MVC, .NET 10, managed identity)
+        --token for the accounts API--> API Management (Consumption): validates token, fixed Dataverse query
+        --APIM managed identity--> Dataverse Web API (application user, read-only role)
+```
+
+Plus Log Analytics + Application Insights. No secrets: two managed identities do the calls; the two Entra app registrations (`<baseName>-web-<env>` for sign-in, `<baseName>-accounts-api-<env>` as token audience) are identifiers only and are created by the deploy script. The APIM policy is in `azure/infra/policies/get-accounts.xml`; the contact columns that count as contact information are the `contactInfoColumns` parameter (APIM named value `contact-info-columns`).
+
+1. Fill in `azure/infra/main.<env>.bicepparam` (`dataverseUrl`, `appServiceSku`, `contactInfoColumns`).
+2. `az login`, then preview: `.\azure\scripts\Deploy-Azure.ps1 -Environment dev -ResourceGroup <rg> -Location <region> -Subscription <id> -WhatIf`
+   (registers resource providers, creates the resource group and the app registrations if missing, then runs what-if).
+3. Deploy infra (+ code): `.\azure\scripts\Deploy-Azure.ps1 -Environment dev -ResourceGroup <rg> [-WebProject azure\<Name>.Web]`
+   (needs Contributor on the resource group and rights to create Entra app registrations).
+4. Wire it to Dataverse: add the **APIM managed identity's Application ID** (printed by the script) as an application user with the read-only security role.
 
 ## Common pac commands
 
