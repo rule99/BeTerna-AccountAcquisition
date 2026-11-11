@@ -17,6 +17,9 @@ local.settings.json
 # Power Platform CLI
 .pac/
 
+# Claude Code personal settings
+.claude/settings.local.json
+
 # Unpacked solution temp / packed solution output
 _temp/
 out/
