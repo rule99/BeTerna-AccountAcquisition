@@ -44,6 +44,7 @@ No secrets anywhere: both service calls use managed identities; the two Entra ap
 | `Solutions/BeTernaAccountAcquisition/` | Unpacked Dataverse solution: the role, the account alternate key, the autonumber on `accountnumber` |
 | `deployment/scripts/` | `Export-Solution.ps1`, `Pack-Solution.ps1`, `Import-Solution.ps1` |
 | `out/demo-data/` | Git-ignored: scripts that created/remove demo records and revert a contact edit |
+| `apps/account-list/` | Experiment, not the assignment: the same list as a Power Apps code app (React/TS, Dataverse connector as the signed-in user, contact columns from env variable `lrw_ContactInfoColumns`). See its `memory-bank.md` |
 
 ## 4. Environments and identifiers (dev)
 
@@ -102,6 +103,7 @@ Named values: `tenant-id`, `dataverse-url` (single source for destination and to
 - All endpoints are public; identity protects each hop. Dataverse IP firewall is off.
 - **The dev Dataverse environment is a Dynamics 365 trial that ends 2026-12-10**; check billing shows "Expires" (not "Renews"). Trial data is deleted after expiry: the solution is in the repo; demo data would need recreating.
 - No CI pipeline; tests run locally. `test`/`prod` bicepparam files still have placeholders.
+- Code app experiment "Account List (Code App)" is deployed to dev (app ID `3df905c4-1305-486d-b0c7-2f1e40c41397`) and in the solution with env variable `lrw_ContactInfoColumns`. Code apps had to be enabled per environment (admin center → Settings → Product → Features). Redeploy: raise `src/version.ts`, then `npm run build && npx --no-install pa app push` in `apps/account-list`. The Power Apps CLI signs in with `npx --no-install pa auth login` (browser; device code is blocked by the tenant).
 
 ## 9. Documents (Claude Docs)
 

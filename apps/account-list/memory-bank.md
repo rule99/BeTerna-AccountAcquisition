@@ -32,8 +32,8 @@ Experiment: the account list from the assignment (`azure/AccountAcquisition.Web`
 - [x] Data sources: account, contact, environmentvariabledefinition, environmentvariablevalue (Dataverse connector, no connection needed)
 - [x] Implement app: `src/constants/dataverse.ts`, `src/domain/accountStatus.ts`, `src/data/loadAccounts.ts`, `src/components/{AccountTable,Legend,ErrorPanel}.tsx`, `src/App.tsx`, dark theme; build + lint clean; rule checked with Node (12 checks)
 - [x] Final build and deploy: v1.0.0 pushed 2026-11-15 (user confirmed)
-- [ ] Verify in the browser: 8 accounts sorted ACC-00001…ACC-00008, ACC-00007 orange, ACC-00008 red; Reload; env variable change takes effect without redeploy
-- [ ] Solution export + commit (ask first)
+- [x] Verified in the browser by the user: list, colours and Reload work
+- [x] Solution exported (1.0.0.3, dev bumped to 1.0.0.4) and committed on `feature/code-app-experiment`
 
 ## Notes
 
