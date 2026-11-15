@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "appId": "3df905c4-1305-486d-b0c7-2f1e40c41397",
+  "appDisplayName": "Account List (Code App)",
+  "region": "prod",
+  "appType": "CodeApp",
+  "environmentId": "94faa566-3cbc-e90a-8866-bff29ec30448",
+  "description": "Experiment: the account list as a Power Apps code app",
+  "buildPath": "./dist",
+  "buildEntryPoint": "index.html",
+  "localAppUrl": "http://localhost:3000",
+  "logoPath": "Default",
+  "connectionReferences": {},
+  "databaseReferences": {
+    "default.cds": {
+      "dataSources": {
+        "accounts": {
+          "entitySetName": "accounts",
+          "logicalName": "account",
+          "isHidden": false
+        },
+        "contacts": {
+          "entitySetName": "contacts",
+          "logicalName": "contact",
+          "isHidden": false
+        },
+        "environmentvariabledefinitions": {
+          "entitySetName": "environmentvariabledefinitions",
+          "logicalName": "environmentvariabledefinition",
+          "isHidden": false
+        },
+        "environmentvariablevalues": {
+          "entitySetName": "environmentvariablevalues",
+          "logicalName": "environmentvariablevalue",
+          "isHidden": false
+        }
+      },
+      "environmentVariableName": ""
+    }
+  }
+}

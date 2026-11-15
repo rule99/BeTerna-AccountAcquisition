@@ -1,4 +1,9 @@
 {
-  "EnvironmentVariables": [],
+  "EnvironmentVariables": [
+    {
+      "SchemaName": "lrw_ContactInfoColumns",
+      "Value": "emailaddress1,telephone1,mobilephone,fax,address1_line1,address1_city,address1_postalcode,address1_country"
+    }
+  ],
   "ConnectionReferences": []
 }
