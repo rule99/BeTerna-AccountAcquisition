@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CanvasApp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>lrw_accountlistcodeapp_1150c</Name>
+  <AppVersion>2026-11-15T18:32:34Z</AppVersion>
+  <Status>Ready</Status>
+  <CreatedByClientVersion>0.0.0.0</CreatedByClientVersion>
+  <MinClientVersion>0.0.0.0</MinClientVersion>
+  <Tags>{}</Tags>
+  <IsCdsUpgraded>0</IsCdsUpgraded>
+  <GalleryItemId xsi:nil="true"></GalleryItemId>
+  <BackgroundColor>RGBA(255,255,255,1)</BackgroundColor>
+  <DisplayName>Account List (Code App)</DisplayName>
+  <Description>Experiment: the account list as a Power Apps code app</Description>
+  <CommitMessage xsi:nil="true"></CommitMessage>
+  <Publisher xsi:nil="true"></Publisher>
+  <AuthorizationReferences>[]</AuthorizationReferences>
+  <ConnectionReferences>{}</ConnectionReferences>
+  <DatabaseReferences>{"default.cds":{"databaseDetails":{"referenceType":"Environmental","environmentName":"default.cds","overrideValues":{"status":"NotSpecified","environmentVariableName":""}},"dataSources":{"accounts":{"entitySetName":"accounts","logicalName":"account"},"contacts":{"entitySetName":"contacts","logicalName":"contact"},"environmentvariabledefinitions":{"entitySetName":"environmentvariabledefinitions","logicalName":"environmentvariabledefinition"},"environmentvariablevalues":{"entitySetName":"environmentvariablevalues","logicalName":"environmentvariablevalue"}}}}</DatabaseReferences>
+  <AppComponents>[]</AppComponents>
+  <AppComponentDependencies>[]</AppComponentDependencies>
+  <CanConsumeAppPass>1</CanConsumeAppPass>
+  <CanvasAppType>4</CanvasAppType>
+  <BypassConsent>0</BypassConsent>
+  <AdminControlBypassConsent>0</AdminControlBypassConsent>
+  <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <CdsDependencies>{"cdsdependencies":[{"logicalname":"account","componenttype":1},{"logicalname":"contact","componenttype":1},{"logicalname":"environmentvariabledefinition","componenttype":1},{"logicalname":"environmentvariablevalue","componenttype":1}]}</CdsDependencies>
+  <IsCustomizable>1</IsCustomizable>
+  <CodeAppPackageUris>
+    <CodeAppPackageUri>/CanvasApps/lrw_accountlistcodeapp_1150c_CodeAppPackages/index.html_ContentType_text/html</CodeAppPackageUri>
+    <CodeAppPackageUri>/CanvasApps/lrw_accountlistcodeapp_1150c_CodeAppPackages/.pa/power.config.json_ContentType_application/json</CodeAppPackageUri>
+    <CodeAppPackageUri>/CanvasApps/lrw_accountlistcodeapp_1150c_CodeAppPackages/assets/index-Chp1tlt-.css_ContentType_text/css</CodeAppPackageUri>
+    <CodeAppPackageUri>/CanvasApps/lrw_accountlistcodeapp_1150c_CodeAppPackages/assets/index-DmENc0FZ.js_ContentType_application/javascript</CodeAppPackageUri>
+    <CodeAppPackageUri>/CanvasApps/lrw_accountlistcodeapp_1150c_CodeAppPackages/vite.svg_ContentType_image/svg+xml</CodeAppPackageUri>
+  </CodeAppPackageUris>
+</CanvasApp>

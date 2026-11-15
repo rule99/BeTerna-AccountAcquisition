@@ -1,0 +1,14 @@
+<environmentvariabledefinition schemaname="lrw_ContactInfoColumns">
+  <defaultvalue>emailaddress1,telephone1,mobilephone,fax,address1_line1,address1_city,address1_postalcode,address1_country</defaultvalue>
+  <description default="Comma-separated contact columns that count as contact information for the account list (code app). A contact with none of them filled makes its account red. Empty or missing = the app shows an error.">
+    <label description="Comma-separated contact columns that count as contact information for the account list (code app). A contact with none of them filled makes its account red. Empty or missing = the app shows an error." languagecode="1033" />
+  </description>
+  <displayname default="Contact Info Columns">
+    <label description="Contact Info Columns" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.0.3</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>
