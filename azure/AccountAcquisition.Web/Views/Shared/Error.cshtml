@@ -1,0 +1,10 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+<h1>Something went wrong</h1>
+<p>The page couldn't be shown. Try again; if it keeps failing, contact support with the reference below.</p>
+@if (!string.IsNullOrEmpty(Model.TraceId))
+{
+    <p class="muted">Reference: <code>@Model.TraceId</code></p>
+}

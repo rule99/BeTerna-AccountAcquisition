@@ -84,9 +84,26 @@ Plus Log Analytics + Application Insights. No secrets: two managed identities do
 1. Fill in `azure/infra/main.<env>.bicepparam` (`dataverseUrl`, `appServiceSku`, `contactInfoColumns`).
 2. `az login`, then preview: `.\azure\scripts\Deploy-Azure.ps1 -Environment dev -ResourceGroup <rg> -Location <region> -Subscription <id> -WhatIf`
    (registers resource providers, creates the resource group and the app registrations if missing, then runs what-if).
-3. Deploy infra (+ code): `.\azure\scripts\Deploy-Azure.ps1 -Environment dev -ResourceGroup <rg> [-WebProject azure\<Name>.Web]`
-   (needs Contributor on the resource group and rights to create Entra app registrations).
-4. Wire it to Dataverse: add the **APIM managed identity's Application ID** (printed by the script) as an application user with the read-only security role.
+3. Deploy infra + code: `.\azure\scripts\Deploy-Azure.ps1 -Environment dev -ResourceGroup <rg> -WebProject azure\AccountAcquisition.Web`
+   (needs Contributor on the resource group and rights to create Entra app registrations; leave out `-WebProject` to deploy infra only).
+4. Wire it to Dataverse: import the solution (it carries the read-only role **Account Acquisition API Reader**), then add the **APIM managed identity's Application ID** (printed by the script) as an application user with that role:
+   `pac admin assign-user --environment <dataverse-url> --user <apim-app-id> --role 'Account Acquisition API Reader' --application-user`.
+5. New environment only: give existing accounts unique `accountnumber` values before the import (the alternate key fails on duplicates), then set the autonumber seed above the highest number (`SetAutoNumberSeed`; the default seed is 1000).
+
+### The web app (`azure/AccountAcquisition.Web`)
+
+ASP.NET Core MVC on .NET 10. The page lists active accounts sorted by Account ID (`accountnumber`), with their number of active contacts:
+
+- **Orange**: the account has no active contacts.
+- **Red**: at least one active contact has none of the contact-information columns filled. Only the columns APIM names in its `X-Contact-Info-Columns` response header count (Dataverse adds others, e.g. `_parentcustomerid_value`), so the list lives only in the `contact-info-columns` named value.
+
+Data loads with the page; **Reload** fetches only the table (`/Accounts/Table`). The app calls APIM with its system-assigned managed identity. It refuses to start without valid `AccountsApi__BaseUrl` / `AccountsApi__Scope` settings, and outside Development it answers 503 when App Service Authentication is off (`WEBSITE_AUTH_ENABLED` not `True`). Telemetry goes to Application Insights (`Microsoft.OpenTelemetry`) when `APPLICATIONINSIGHTS_CONNECTION_STRING` is set. Dataverse names, configuration keys, the API route and header names are in its `Constants/` folder.
+
+| Task | Command |
+|---|---|
+| Run locally with sample data (`SampleData/accounts.json`; real data only in Azure, since APIM accepts only the web app's identity) | `dotnet run --project azure\AccountAcquisition.Web --launch-profile SampleData`, then https://localhost:7180 |
+| Run the tests (xUnit, `azure/AccountAcquisition.Web.Tests`) | `dotnet test azure\AccountAcquisition.slnx` |
+| Publish to Azure | `Deploy-Azure.ps1 … -WebProject azure\AccountAcquisition.Web` (step 3 above) |
 
 ## Common pac commands
 

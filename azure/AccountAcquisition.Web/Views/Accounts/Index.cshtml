@@ -1,0 +1,22 @@
+@model AccountsPageViewModel
+@{
+    ViewData["Title"] = "Active accounts";
+}
+<div class="toolbar">
+    <h1>Active accounts</h1>
+    <button type="button" id="reload-button" class="button" data-url="@Url.Action("Table", "Accounts")">Reload</button>
+    <span id="reload-status" class="reload-status" role="status" aria-live="polite"></span>
+</div>
+
+<ul class="legend" aria-label="Legend">
+    <li><span class="swatch status-orange" aria-hidden="true"></span>No contacts</li>
+    <li><span class="swatch status-red" aria-hidden="true"></span>At least one contact without contact information</li>
+</ul>
+
+<div id="account-table">
+    <partial name="_AccountTable" model="Model.Table" />
+</div>
+
+@section Scripts {
+    <script src="~/js/accounts.js" asp-append-version="true"></script>
+}

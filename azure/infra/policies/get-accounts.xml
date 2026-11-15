@@ -4,6 +4,7 @@
   2. Rewrite to one fixed Dataverse query: active accounts + their active contacts (contact columns from the
      'contact-info-columns' named value). Incoming query parameters are dropped, so callers can't widen the query.
   3. Call Dataverse with APIM's own managed identity (Dataverse application user with a read-only role).
+  4. Return the contact column list in the X-Contact-Info-Columns response header (see outbound).
   The Dataverse URL comes from ONE named value ('dataverse-url') for both the destination and the token's
   resource, so a token is never sent to a host it wasn't issued for.
 -->
@@ -22,7 +23,7 @@
       </required-claims>
     </validate-azure-ad-token>
     <set-backend-service base-url="{{dataverse-url}}/api/data/v9.2" />
-    <rewrite-uri template="/accounts?$select=accountid,accountnumber,name,address1_composite&amp;$filter=statecode%20eq%200&amp;$orderby=name&amp;$expand=contact_customer_accounts($select=contactid,{{contact-info-columns}};$filter=statecode%20eq%200)" copy-unmatched-params="false" />
+    <rewrite-uri template="/accounts?$select=accountid,accountnumber,name,address1_composite&amp;$filter=statecode%20eq%200&amp;$orderby=accountnumber%20asc,name%20asc&amp;$expand=contact_customer_accounts($select=contactid,{{contact-info-columns}};$filter=statecode%20eq%200)" copy-unmatched-params="false" />
     <set-header name="Authorization" exists-action="delete" />
     <authentication-managed-identity resource="{{dataverse-url}}" />
     <set-header name="Accept" exists-action="override">
@@ -34,12 +35,22 @@
     <set-header name="OData-Version" exists-action="override">
       <value>4.0</value>
     </set-header>
+    <!-- Expanded collections (the contacts) may otherwise come from a Dataverse cache and miss recent changes. -->
+    <set-header name="If-None-Match" exists-action="override">
+      <value>null</value>
+    </set-header>
   </inbound>
   <backend>
     <base />
   </backend>
   <outbound>
     <base />
+    <!-- Tell the caller which contact columns count as contact information. Dataverse adds other columns to each
+         contact (e.g. _parentcustomerid_value, address1_composite), so the caller must check only these. The list
+         stays in one place: the 'contact-info-columns' named value, also used in the query above. -->
+    <set-header name="X-Contact-Info-Columns" exists-action="override">
+      <value>{{contact-info-columns}}</value>
+    </set-header>
   </outbound>
   <on-error>
     <base />

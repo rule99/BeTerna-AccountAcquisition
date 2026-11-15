@@ -1,0 +1,28 @@
+@using AccountAcquisition.Web.Auth
+@{
+    // Set by Easy Auth in Azure; absent locally. Display only.
+    var userName = Context.Request.Headers[EasyAuthHeaders.PrincipalName].ToString();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] · Account List</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <span class="site-title">Account List</span>
+        @if (!string.IsNullOrEmpty(userName))
+        {
+            <span class="site-user">Signed in as @userName · <a href="@EasyAuthHeaders.LogoutPath">Sign out</a></span>
+        }
+    </header>
+    <main class="site-main">
+        @RenderBody()
+    </main>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
